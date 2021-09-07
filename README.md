@@ -27,11 +27,19 @@ Users will be able to track workout plans from their Dashboard as well as use a 
 ![mvp-wireframe](./readme-images/Splash_Page.png)
 
 
-=== User Flow ===
+=== User Flow MVP ===
+
+[mvp-wireframe](./readme-images/MVPUserFlow.png)
+
+=== User FLow Stretch ===
 
 ![mvp-wireframe](./readme-images/UserFlow.png)
 
-=== ERD ===
+=== ERD MVP ===
+
+![mvp-wireframe](./readme-images/ERD_MVP.png)
+
+=== ERD Stretch ===
 
 ![mvp-wireframe](./readme-images/ERD.png)
 
