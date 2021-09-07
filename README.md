@@ -20,11 +20,11 @@ Users will be able to track workout plans from their Dashboard as well as use a 
 
 - Login and Sign-up Pages
 
-![mvp-wireframe](./readme-images/login_Modal.png)
+![mvp-wireframe](./readme-images/Login_Modal.png)
 
 - Splash Page and Dashboard
 
-![mvp-wireframe](./readme-images/Splash_page.png)
+![mvp-wireframe](./readme-images/Splash_Page.png)
 
 
 === User Flow ===
