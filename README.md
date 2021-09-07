@@ -29,7 +29,7 @@ Users will be able to track workout plans from their Dashboard as well as use a 
 
 === User Flow MVP ===
 
-[mvp-wireframe](./readme-images/MVPUserFlow.png)
+![mvp-wireframe](./readme-images/MVPUserFlow.png)
 
 === User FLow Stretch ===
 
