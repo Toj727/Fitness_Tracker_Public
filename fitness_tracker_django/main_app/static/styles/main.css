@@ -1,0 +1,30 @@
+.form-styling form div small{
+    display: none;
+}
+
+body {
+    background-color: #052c65;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Permanent Marker', cursive;
+    
+}
+
+.main-body {
+    background-color: #052c65;
+}
+
+.navbar {
+    background-color: #3d8bfd;
+}
+
+.card {
+    overflow: hidden;
+    border: hidden;
+}
+.card-body {
+    background-color: black;
+    border: hidden;
+}

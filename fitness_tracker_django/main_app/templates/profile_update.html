@@ -1,0 +1,92 @@
+{% extends 'base.html' %} 
+{%block title%}
+Fitness Tracker - Edit {{user.username}}
+{%endblock%}
+{% block content %}
+
+<!--
+<form action="{% url 'profile_update' user.profile.pk%}" method="POST">
+    {% comment %} <div class="container">
+        <div class="row"> {% endcomment %}
+        <label for="first">First Name</label>
+        <input id="first" type="text" name="first_name" value="{{user.first_name}}"/>
+    {% comment %} </div> {% endcomment %}
+    <label for="last">Last Name</label>
+    <input id="last" type="text" name="last_name" value="{{user.last_name}}"/>
+    <label for="image">Profile Picture</label>
+    <input id="image" type="text" name="image" value="{{user.profile.image}}"/>
+    <label for="city">Current City</label>
+    <input id="city" type="text" name="current_city" value="{{user.profile.current_city}}"/>
+    <a href="{% url 'profile_detail' user.profile.pk%}">
+    <button>Cancel</button>
+    </a>
+    <input type="submit" value="Update"/>
+    {% csrf_token %}
+</form>
+-->
+
+    <div class="main-body">
+    <div class="row justify-content-md-center">
+    <form action="{% url 'profile_update' user.profile.pk%}" method="POST">
+        {% csrf_token %}
+        <div class="col-md-8 mb-3" id="update_photo">
+        <div class="card">
+            <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+                <img src="{{user.profile.image}}" alt="Admin" class="rounded-circle" width="150">
+                <div class="mt-3">
+                    <label for="image">Profile Picture</label>
+                    <input id="image" type="text" name="image" value="{{user.profile.image}}"/>
+                </div>
+                <div class="mt-3">
+                    <h4>{{user.username}}</h4>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-8">
+        <div class="card mb-3">
+            <div class="card-body">
+            <div class="row">
+                <div class="col-sm-3">
+                <h6 class="mb-0">Start Date</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                {{user.date_joined}}
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">Starting Weight</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    <div class="row">
+                        <div class="mt-1">
+                            {% comment %}<label for="first">First Name</label>{% endcomment %}
+                            <input id="start" type="text" name="starting_weight" value="{{user.starting_weight}}"/>
+                        </div>
+                        <div class="mt-1">
+                            {% comment %}<label for="last">Last Name</label>{% endcomment %}
+                            <input id="goal" type="text" name="weight_goal" value="{{user.weight_goal}}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a class="btn btn-danger " href="{% url 'profile_detail' user.profile.pk%}">
+                    Cancel
+                    </a>
+                    <input class="btn btn-success "  type="submit" value="Update"/>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+
+
+
+{%endblock%}

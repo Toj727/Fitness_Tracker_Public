@@ -1,7 +1,10 @@
+import datetime
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models import Model, CharField, ManyToManyField, ImageField, OneToOneField
+from django.db.models.deletion import CASCADE
 from django.db.models.fields import DecimalField, DateField
 from django.db.models.fields.related import ForeignKey
 from django.contrib.auth.models import User
@@ -11,26 +14,31 @@ from decimal import Decimal
 # Create your models here.
 
 class Profile(Model):
-    user = OneToOneField(User, on_delete=models.CASCADE)
+    user = OneToOneField(User, on_delete=models.CASCADE,default= "Null")
     image = CharField(
-        max_length=500, default='https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinclipart.com%2Fpindetail%2FiiRmhwb_png-file-svg-default-profile-picture-free-clipart%2F&psig=AOvVaw0UIbCGa2c2jIE9q58q0tbE&ust=1631224577068000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJi5hKGv8PICFQAAAAAdAAAAABAD')
-    starting_weight = DecimalField(max_digits=5, decimal_places=2, min_value=Decimal('80.00'))
-    weight_goal = DecimalField(max_digits=5, decimal_places=2, min_value=Decimal('91.00'))
+        max_length=500, default='https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg')
+    starting_weight = DecimalField(max_digits=5, decimal_places=2, default="150.00")
+    weight_goal = DecimalField(max_digits=5, decimal_places=2, default="150.00")
 
     def __str__(self):
         return self.user.username
 
-
 class WeighIn(Model):
-    date = DateField(default=date.today())
-    weight = DecimalField(max_digits=5, decimal_places=2, min_value=Decimal('80.00'))
+    date = DateField(verbose_name=_("Date"))
+    weight = DecimalField(max_digits=5, decimal_places=2)
+    user = ForeignKey(User, on_delete=CASCADE, related_name='weigh_ins', default=1)
+    
 
     def __str__(self):
-        return self.weight
+        return str(self.weight)
+
+    class Meta:
+        ordering = ['date']
         
 class Sleep(Model):
-    date = DateField(default=date.today())
-    hours = DecimalField(max_digits=3, decimal_places=2, min_value=Decimal('0.50'))
+    date = DateField(verbose_name=_("Date"))
+    hours = DecimalField(max_digits=3, decimal_places=2)
+    user = ForeignKey(User, on_delete=CASCADE, default=1)
 
     def __str__(self):
-        return self.hours
+        return str(self.hours)

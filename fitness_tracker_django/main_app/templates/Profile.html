@@ -1,7 +1,10 @@
 {%extends 'base.html'%}
 {%block title%}
-Profile
+profile
 {%endblock%}
 {%block content%}
 <h3>Profile</h3>
-{%endblock%} 
+<p>{{user.profile}}</p>
+<img style = "height:100px"src="{{user.profile.image}}" alt="{{user.profile}} image">
+<p>joined: {{user.date_joined}}</p>
+{%endblock%}
