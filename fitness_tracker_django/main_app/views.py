@@ -71,10 +71,14 @@ class WeightCreate(CreateView):
 #       def get(self, request, pk):
 #             context = {''}
 # @method_decorator(login_required, name='dispatch')
+
+
 class ProfileView(View):
       template_name = 'profile.html'
 
       def get(self, request):
+          # if current user, render current user
+          # else send error that this is not current users profile page
           return redirect(f"/profile/{request.user.id}")
         
 class ProfileDetail(DetailView):
