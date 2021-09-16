@@ -28,15 +28,22 @@
             <tr>
                 <th class="text-center" scope="col">Date</th>
                 <th class="text-center" scope="col">Weight</th>
+                <th class="text-center" scope="col">Delete</th>
             </tr>
         </thead>
     <tbody>
-    {% comment %} {% for weigh_ins in user.weigh_ins.all%} {% endcomment %}
+    {% for weigh_in in user.weigh_ins.all%}
         <tr>
-            <td class="text-center">9/13</td>
-            <td class="text-center">180.00</td>
+            <td class="text-center">{{weigh_in.date}}</td>
+            <td class="text-center">{{weigh_in.weight}}</td>
+            <td class="text-center">
+                <form method="delete">
+                    <input type="hidden" value="{{weigh_in.id}}" name="delete-id">
+                    <input type="Submit" value="Delete"></button>
+                </form>
+            </td>
         </tr>
-        <tr>
+        {% comment %} <tr>
             <td class="text-center">9/20</td>
             <td class="text-center">178.92</td>
         </tr>
@@ -59,8 +66,8 @@
         <tr>
             <td class="text-center">10/25</td>
             <td class="text-center">174.14</td>
-        </tr>
-        {% comment %} {%endfor%} {% endcomment %}
+        </tr> {% endcomment %}
+        {%endfor%}
     </tbody>
     </table>
     <div class="mb-3 display-4 text-center mt-5">
@@ -77,39 +84,22 @@
             <tr>
                 <th class="text-center" scope="col">Date</th>
                 <th class="text-center" scope="col">hours</th>
+                <th class="text-center" scope="col">Delete</th>
             </tr>
         </thead>
     <tbody>
-    {% comment %} {% for weigh_ins in user.weigh_ins.all%} {% endcomment %}
+    {% for sleep in user.sleeps.all%}
         <tr>
-            <td class="text-center">Sunday</td>
-            <td class="text-center">8</td>
+            <td class="text-center">{{sleep.date}}</td>
+            <td class="text-center">{{sleep.hours}}</td>
+            <td class="text-center">
+                <form method="delete">
+                    <input type="hidden" value="{{sleep.id}}" name="delete-id">
+                    <input type="Submit" value="Delete"></button>
+                </form>
+            </td>
         </tr>
-        <tr>
-            <td class="text-center">Monday</td>
-            <td class="text-center">6</td>
-        </tr>
-        <tr>
-            <td class="text-center">Tuesday</td>
-            <td class="text-center">7</td>
-        </tr>
-        <tr>
-            <td class="text-center">Wednesday</td>
-            <td class="text-center">4</td>
-        </tr>
-        <tr>
-            <td class="text-center">Thursday</td>
-            <td class="text-center">6</td>
-        </tr>
-        <tr>
-            <td class="text-center">Friday</td>
-            <td class="text-center">3</td>
-        </tr>
-        <tr>
-            <td class="text-center">Saturday</td>
-            <td class="text-center">10</td>
-        </tr>
-        {% comment %} {%endfor%} {% endcomment %}
+        {%endfor%}
     </tbody>
     </table>
 </div>

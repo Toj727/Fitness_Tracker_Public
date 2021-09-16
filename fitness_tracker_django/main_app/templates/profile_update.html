@@ -65,11 +65,15 @@ Fitness Tracker - Edit {{user.username}}
                     <div class="row">
                         <div class="mt-1">
                             {% comment %}<label for="first">First Name</label>{% endcomment %}
-                            <input id="start" type="text" name="starting_weight" value="{{user.starting_weight}}"/>
+                            <input id="start" type="text" name="starting_weight" value="{{user.profile.starting_weight}}"/>
                         </div>
-                        <div class="mt-1">
-                            {% comment %}<label for="last">Last Name</label>{% endcomment %}
-                            <input id="goal" type="text" name="weight_goal" value="{{user.weight_goal}}"/>
+                            <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Goal Weight</h6>
+                                <div class="mt-1">
+                                    <input id="goal" type="text" name="weight_goal" value="{{user.profile.weight_goal}}"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
