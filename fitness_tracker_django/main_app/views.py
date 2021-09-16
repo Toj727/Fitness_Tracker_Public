@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
+from django.db.models import fields
 from django.shortcuts import redirect, render
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 from django.views.generic import DetailView, CreateView, UpdateView
 from django.views.generic.base import TemplateView
 from django.contrib.auth import login
@@ -20,14 +21,21 @@ class About(TemplateView):
     template_name = 'about.html'
 
 # @method_decorator(login_required, name='dispatch')
-class Dashboard(TemplateView):
+class Dashboard(DetailView):
+    model = Profile
     template_name = 'dashboard.html'
 
     def get_context_data(self, **kwargs): 
         context = super().get_context_data(**kwargs)
+        
         context['weigh_ins'] = WeighIn.objects.filter(user=self.request.user)
+        context['sleeps'] = Sleep.objects.filter(user=self.request.user)
         return context
 
+    # def get(self, request):
+
+    #     return redirect(f"/dashboard/{request.user.id}")
+    
 class WeightCreate(CreateView):
 
 
@@ -63,16 +71,34 @@ class WeightCreate(CreateView):
             return super(WeightCreate, self).form_valid(form)
         
         def get_success_url(self):
-            print(self.kwargs)
-            return reverse('dashboard', kwargs={'pk': self.object.pk})
+            print("pk", self.object.pk)
+            user_id = self.request.user.id
+            return reverse('dashboard', kwargs={'pk': user_id})
 
+        # def get_success_url(self):
+        #     user_id = self.request.user.id
+        # return reverse('user_profile', kwargs={'pk': user_id})
 
 class WeightDelete(DeleteView):
     
 
     model = WeighIn
     template_name = 'weight_delete.html'
+    fields = ['date', 'weight']
     success_url = '/dashboard/'
+
+    def get_context_data(self, **kwargs):
+
+        context = super(self, WeighIn).get_context_data(**kwargs)
+
+        return context
+
+    def get_success_url(self):
+        user_id = self.request.user.id
+
+        return reverse('dashboard', kwargs={'pk': user_id})
+
+    
 # class WeightPostUpdate(UpdateView):
 
 #       def get(self, request, pk):
@@ -130,7 +156,7 @@ class SleepCreate(CreateView):
             return super(SleepCreate, self).form_valid(form)
         
         def get_success_url(self):
-            print(self.kwargs)
+            
             return reverse('dashboard', kwargs={'pk': self.object.pk})
         
 class ProfileView(View):

@@ -3,7 +3,7 @@
 <div class="container text-light">
     <h1 class="pt-5 text-center">Add a Weight Entry</h1>
         <div class = 'p-5 form-styling'>
-            <form action="{% url 'weight_create'%}" method="POST">
+            <form action="{% url 'weight_create' %}" method="POST">
 
                 {% csrf_token %}
                 {{form|crispy}}

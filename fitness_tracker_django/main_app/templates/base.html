@@ -59,7 +59,7 @@
               <a class="nav-link" style="padding-right: 10px;" href="{%url 'profile_detail' request.user.id %}">My&nbsp;Profile</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" style="padding-right: 10px;" href="{%url 'dashboard'%}">Dashboard </a> 
+              <a class="nav-link" style="padding-right: 10px;" href="{%url 'dashboard' request.user.pk%}">Dashboard </a> 
             </li>       
             <li class="nav-item">
               <a class="nav-link" href="{%url 'logout'%}">Log&nbsp;Out</a> 

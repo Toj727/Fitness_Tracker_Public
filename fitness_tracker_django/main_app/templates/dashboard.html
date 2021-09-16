@@ -11,7 +11,15 @@
 </style>
 <div class="container text-light">
         <h1 class="display-1 text-center mt-5">DASHBOARD</h1>
-    <div class="mb-3 display-4 text-center mt-5">
+        <div class="dropdown text-center">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Add
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{% url 'weight_create'%}">Weight Entry</a></li>
+                <li><a class="dropdown-item" href="{% url 'sleep_create' %}">Sleep Entry</a></li>
+        </div>
+    <div class="mb-3 display-4 text-center mt-2">
         Weight Chart
     </div>
     <div class="card chart-container">
@@ -37,8 +45,9 @@
             <td class="text-center">{{weigh_in.date}}</td>
             <td class="text-center">{{weigh_in.weight}}</td>
             <td class="text-center">
-                <form method="delete">
-                    <input type="hidden" value="{{weigh_in.id}}" name="delete-id">
+                <form action="{% url 'weight_delete' weigh_in.pk%}" method="POST">
+                {% csrf_token %}
+                    <input type="hidden" value="{{weigh_in.pk}}" name="delete-id">
                     <input type="Submit" value="Delete"></button>
                 </form>
             </td>
