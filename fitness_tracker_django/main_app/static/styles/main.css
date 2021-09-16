@@ -1,14 +1,19 @@
+:root {
+    --primary: #052c65;
+}
+
 .form-styling form div small{
     display: none;
 }
 
 body {
-    background-color: #052c65;
+    background: linear-gradient(to bottom, var(--primary),#6e97d3) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     font-family: 'Permanent Marker', cursive;
+    height: 100vh;
     
 }
 
