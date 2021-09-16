@@ -102,8 +102,9 @@
             <td class="text-center">{{sleep.date}}</td>
             <td class="text-center">{{sleep.hours}}</td>
             <td class="text-center">
-                <form method="delete">
-                    <input type="hidden" value="{{sleep.id}}" name="delete-id">
+                <form action="{% url 'sleep_delete' sleep.pk%}" method="POST">
+                {% csrf_token %}
+                    <input type="hidden" value="{{sleep.pk}}" name="delete-id">
                     <input type="Submit" value="Delete"></button>
                 </form>
             </td>

@@ -20,7 +20,7 @@ class Home(TemplateView):
 class About(TemplateView):
     template_name = 'about.html'
 
-# @method_decorator(login_required, name='dispatch')
+
 class Dashboard(DetailView):
     model = Profile
     template_name = 'dashboard.html'
@@ -32,28 +32,9 @@ class Dashboard(DetailView):
         context['sleeps'] = Sleep.objects.filter(user=self.request.user)
         return context
 
-    # def get(self, request):
-
-    #     return redirect(f"/dashboard/{request.user.id}")
-    
 class WeightCreate(CreateView):
 
 
-        # def get(self, request):
-        #       context = {'user': Profile.objects.all()}
-        #       return render(request, 'weight_create.html', context)
-
-        # def post(self, request, pk):
-            
-        #       date = request.POST.get("date")
-        #       weight = request.POST.get("weight")
-        #       user = User.objects.get(pk=pk)
-        #       WeighIn.objects.create(
-        #           date=date,
-        #           weight=weight,
-        #           users=user)
-
-        #       return redirect("dashboard", pk=pk)
         model = WeighIn
         fields = ['date', 'weight']
         template_name = 'weight_create.html'
@@ -71,13 +52,10 @@ class WeightCreate(CreateView):
             return super(WeightCreate, self).form_valid(form)
         
         def get_success_url(self):
-            print("pk", self.object.pk)
+            
             user_id = self.request.user.id
             return reverse('dashboard', kwargs={'pk': user_id})
 
-        # def get_success_url(self):
-        #     user_id = self.request.user.id
-        # return reverse('user_profile', kwargs={'pk': user_id})
 
 class WeightDelete(DeleteView):
     
@@ -98,47 +76,9 @@ class WeightDelete(DeleteView):
 
         return reverse('dashboard', kwargs={'pk': user_id})
 
-    
-# class WeightPostUpdate(UpdateView):
-
-#       def get(self, request, pk):
-#             context = {'weigh_ins': WeighIn.objects.all(), 'weighIn': WeighIn.objects.get(pk=pk)}
-
-#             return render(request, 'weight_update.html', context)
-
-#       def post(self, request, pk):
-#             date = request.POST.get("date")
-#             weight = request.POST.get('weight')
-#             weigh_ins = WeighIn.objects.get(pk=request.POST.get('weigh_ins'))
-#             WeighIn.objects.filter(pk=pk).update(
-#                 date=date,
-#                 weight=weight)
-
-#             return redirect(f"/dashboard/{pk}")
-
-# class WeightPostDelete(View):
-#       def get(self, request, pk):
-#             context = {''}
-# @method_decorator(login_required, name='dispatch')
 
 class SleepCreate(CreateView):
     
-
-        # def get(self, request):
-        #       context = {'user': Profile.objects.all()}
-        #       return render(request, 'weight_create.html', context)
-
-        # def post(self, request, pk):
-            
-        #       date = request.POST.get("date")
-        #       weight = request.POST.get("weight")
-        #       user = User.objects.get(pk=pk)
-        #       WeighIn.objects.create(
-        #           date=date,
-        #           weight=weight,
-        #           users=user)
-
-        #       return redirect("dashboard", pk=pk)
         model = Sleep
         fields = ['date', 'hours']
         template_name = 'sleep_create.html'
@@ -156,9 +96,30 @@ class SleepCreate(CreateView):
             return super(SleepCreate, self).form_valid(form)
         
         def get_success_url(self):
-            
-            return reverse('dashboard', kwargs={'pk': self.object.pk})
+
+            user_id = self.request.user.id
+            return reverse('dashboard', kwargs={'pk': user_id})
+
+class SleepDelete(DeleteView):
+    
+
+        model = Sleep
+        template_name = 'sleep_delete.html'
+        fields = ['date', 'hours']
+        success_url = '/dashboard/'
+
+        def get_context_data(self, **kwargs):
+
+            context = super(self, Sleep).get_context_data(**kwargs)
+
+            return context
+
+        def get_success_url(self):
+            user_id = self.request.user.id
+
+            return reverse('dashboard', kwargs={'pk': user_id})
         
+    
 class ProfileView(View):
     template_name = 'profile.html'
 
@@ -171,23 +132,9 @@ class ProfileDetail(DetailView):
     model = User
     template_name = 'user_profile.html'
 
-# @method_decorator(login_required, name='dispatch')
-# class UpdateProfile(View):
-    
-#     def get(self, request):
-#         return redirect(f"/profile/{request.user.id}/update")
 
-# @method_decorator(login_required, name='dispatch')
-# class ProfileUpdate(View):
 
 class ProfileUpdate(UpdateView):
-        # template_name = 'profile_update.html'
-        # model = Profile
-        # fields = ['date', 'weight']
-
-        # def get_success_url(self):
-        #     user_id = self.request.user.id
-        #     return reverse('profile_detail', kwargs={'pk':user_id})
     
     def post(self, request, pk):
         
@@ -211,7 +158,7 @@ class ProfileUpdate(UpdateView):
         return reverse('user_profile', kwargs={'pk': user_id})
     
 
-# @method_decorator(login_required, name='dispatch')
+
 
 class Signup(View):
     def get(self, request):

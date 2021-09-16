@@ -37,8 +37,11 @@ class WeighIn(Model):
         
 class Sleep(Model):
     date = DateField(verbose_name=_("Date"))
-    hours = DecimalField(max_digits=3, decimal_places=2)
+    hours = DecimalField(max_digits=4, decimal_places=2)
     user = ForeignKey(User, on_delete=CASCADE, related_name="sleeps", default=1)
 
     def __str__(self):
         return str(self.hours)
+
+    class Meta:
+        ordering = ['date']
