@@ -10,22 +10,22 @@
 }
 </style>
 <div class="container text-light">
-        <h1 class="display-1 text-center mt-5">DASHBOARD</h1>
-        <div class="dropdown text-center">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Add
+        <div class="dropdown text-end mt-3">
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Add Entry
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="{% url 'weight_create'%}">Weight Entry</a></li>
                 <li><a class="dropdown-item" href="{% url 'sleep_create' %}">Sleep Entry</a></li>
         </div>
-    <div class="mb-3 display-4 text-center mt-2">
+        <h1 class="display-1 text-center">DASHBOARD</h1>
+    <div class="mb-3 display-4 text-center mt-4" style="font-family: 'Oswald', sans-serif;">
         Weight Chart
     </div>
     <div class="card chart-container">
         <canvas id="chart"></canvas>
     </div>
-    <div class="display-4 text-center mt-5">
+    <div class="display-4 text-center mt-5" style="font-family: 'Oswald', sans-serif;">
         Weight Table
     </div>
     {% comment %} <div class="input-group rounded">
@@ -48,44 +48,20 @@
                 <form action="{% url 'weight_delete' weigh_in.pk%}" method="POST">
                 {% csrf_token %}
                     <input type="hidden" value="{{weigh_in.pk}}" name="delete-id">
-                    <input type="Submit" value="Delete"></button>
+                    <input class="btn-close btn-close-white" aria-label="Close" type="Submit" value="">
                 </form>
             </td>
         </tr>
-        {% comment %} <tr>
-            <td class="text-center">9/20</td>
-            <td class="text-center">178.92</td>
-        </tr>
-        <tr>
-            <td class="text-center">9/27</td>
-            <td class="text-center">176.45</td>
-        </tr>
-        <tr>
-            <td class="text-center">10/4</td>
-            <td class="text-center">177.78</td>
-        </tr>
-        <tr>
-            <td class="text-center">10/11</td>
-            <td class="text-center">176.54</td>
-        </tr>
-        <tr>
-            <td class="text-center">10/18</td>
-            <td class="text-center">175.32</td>
-        </tr>
-        <tr>
-            <td class="text-center">10/25</td>
-            <td class="text-center">174.14</td>
-        </tr> {% endcomment %}
         {%endfor%}
     </tbody>
     </table>
-    <div class="mb-3 display-4 text-center mt-5">
+    <div class="mb-3 display-4 text-center mt-5" style="font-family: 'Oswald', sans-serif;">
         Sleep Chart
     </div>
     <div class="card chart-container">
         <canvas id="sleep_chart"></canvas>
     </div>
-    <div class="display-4 text-center mt-5">
+    <div class="display-4 text-center mt-5" style="font-family: 'Oswald', sans-serif;">
         Sleep Table
     </div>
     <table class="table table-dark table-striped mt-3" style="font-family: 'Oswald', sans-serif;">
@@ -105,7 +81,7 @@
                 <form action="{% url 'sleep_delete' sleep.pk%}" method="POST">
                 {% csrf_token %}
                     <input type="hidden" value="{{sleep.pk}}" name="delete-id">
-                    <input type="Submit" value="Delete"></button>
+                    <input class="btn-close btn-close-white" aria-label="Close" type="Submit" value="">
                 </form>
             </td>
         </tr>
