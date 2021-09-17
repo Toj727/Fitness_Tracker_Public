@@ -39,14 +39,14 @@
 }
 
 .nav-item {
-  font-family: Permanent Marker, cursive;
+  font-family: 'Oswald', sans-serif;
 }
 </style>
 <body>
     {% if request.path != '/accounts/login/' and request.path != '/accounts/signup/' %}
   <nav class="navbar sticky-top navbar-expand-lg navbar-light text-dark">
     <div class="container-fluid">
-      <a class="navbar-brand fs-1" style="font-family: 'Permanent Marker', cursive;" href="/">
+      <a class="navbar-brand fs-1" style="font-family: 'Oswald', sans-serif;" href="/">
       <img src="https://icon-library.com/images/work-out-icon/work-out-icon-3.jpg"
       style="max-width: 80px; max-height: 60px;"
       alt=""></a>
@@ -99,12 +99,7 @@
     {%block content%}
     {%endblock%}
 
-{% comment %}<script>
-function load_home() {
-    alert('hello')
-     document.querySelector(".modal-body").innerHTML='<object type="text/html" data="home.html" ></object>';
-}
-</script>{% endcomment %}
+
 <script>
 $(document).ready( function() {
     $(".sign-in").on("click", function() {
@@ -117,7 +112,8 @@ $(document).ready( function() {
 </script>
 <footer>
   <div class="text-center p-3 text-light">
-    <a href="/about" class="text-light" style="font-family: 'Permanent Marker', cursive;">About</a>
+    <a href="/about" class="text-light" style="font-family: 'Oswald', cursive;">About</a>
   </div>
+</footer>
 </body>
 </html>

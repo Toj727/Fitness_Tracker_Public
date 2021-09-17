@@ -100,37 +100,7 @@
         </div>
     </div>
 </div>
-<!-- End edit modal -->
-{% comment %} <div class="container">
-    <div class="mx-auto display-4 m-5" style="width: 400px;">
-        Travel Portfolio
-    </div>
-    {% comment %} <div class="input-group rounded">
-        <input type="search" class="form-control rounded mb-4" placeholder="Search" aria-label="Search" aria-describedby="search-addon"/>
-    </div> 
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Title</th>
-                <th scope="col">City</th>
-                <th scope="col">Post Created</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-    <tbody>
-    {% for post in user.posts.all%}
-        <tr>
-            <td><a class="link-dark text-decoration-none" href="{% url 'post_details' post.pk %}">{{post.title}}</a></td>
-            <td>{{post.cities}}</td>
-            <td>{{post.created_at}}</td>
-            <td>
-            </td>
-            </div>
-        </tr>
-        {%endfor%}
-    </tbody>
-    </table>
-</div> {% endcomment %}
+
 
 
 {%endblock%}
